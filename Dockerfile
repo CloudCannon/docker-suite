@@ -1,6 +1,9 @@
 # Pull base image.
 FROM circleci/ruby:2.3.3-node
 
+LABEL maintainer="george@cloudcannon.com"
+
+USER root
 # Install requirements for puppeteer
 RUN \
   apt-get update && \
@@ -11,5 +14,7 @@ RUN \
   ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget && \
   rm -rf /var/lib/apt/lists/*
 
-# Ensure puppeteer is installed
-RUN yarn add --dev puppeteer --check-files
+# Install puppeteer so it's available in the container.
+RUN yarn add puppeteer
+
+USER circleci
