@@ -1,0 +1,7 @@
+FROM cloudcannon/suite
+
+LABEL maintainer="george@cloudcannon.com"
+
+ADD --chown=circleci:circleci dev-cmd.sh .
+
+CMD ["bash", "dev-cmd.sh"]

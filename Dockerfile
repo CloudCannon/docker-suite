@@ -43,7 +43,16 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 #     browser.launch({executablePath: 'google-chrome-unstable'})
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
+# Tell @cloudcannon/suite to use google-chrome-unstable
+ENV DOCKER_SCREENSHOTS true
+
 # Install puppeteer so it's available in the container.
 RUN npm i puppeteer
 
+RUN mkdir /home/circleci/project
+
+RUN chown -R circleci:circleci /home/circleci
+
 USER circleci
+
+WORKDIR /home/circleci/
