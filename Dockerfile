@@ -1,6 +1,6 @@
 # https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md
 # Pull base image.
-FROM circleci/ruby:2.3.3
+FROM circleci/ruby:2.5.3
 
 LABEL maintainer="george@cloudcannon.com"
 
@@ -48,6 +48,14 @@ ENV DOCKER_SCREENSHOTS true
 
 # Install puppeteer so it's available in the container.
 RUN npm i puppeteer
+
+
+RUN gem update --system
+RUN gem install bundler
+RUN gem install bundler -v "~>1.0"
+RUN ruby -v
+RUN gem -v
+RUN bundle version
 
 RUN mkdir /home/circleci/project
 
